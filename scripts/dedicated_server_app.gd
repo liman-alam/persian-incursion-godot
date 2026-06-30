@@ -4,14 +4,14 @@ var status_label: Label
 var ip_label: Label
 var summary_label: Label
 var error_label: Label
+var start_button: Button
+var stop_button: Button
 var players_text: TextEdit
-var chat_text: TextEdit
 
 
 func _ready() -> void:
 	_build_ui()
 	_connect_game_server_signals()
-	GameServer.start_server("Dedicated Server", GameServer.DEFAULT_PORT, false)
 	_refresh_all()
 
 
@@ -69,15 +69,15 @@ func _build_ui() -> void:
 	controls.add_theme_constant_override("separation", 10)
 	root.add_child(controls)
 
-	var start_button := Button.new()
+	start_button = Button.new()
 	start_button.text = "Start Server"
-	start_button.custom_minimum_size = Vector2(145, 38)
+	start_button.custom_minimum_size = Vector2(160, 42)
 	start_button.pressed.connect(_on_start_pressed)
 	controls.add_child(start_button)
 
-	var stop_button := Button.new()
+	stop_button = Button.new()
 	stop_button.text = "Stop Server"
-	stop_button.custom_minimum_size = Vector2(145, 38)
+	stop_button.custom_minimum_size = Vector2(160, 42)
 	stop_button.pressed.connect(_on_stop_pressed)
 	controls.add_child(stop_button)
 
@@ -103,28 +103,8 @@ func _build_ui() -> void:
 	players_text = TextEdit.new()
 	players_text.editable = false
 	players_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	players_text.custom_minimum_size = Vector2(390, 320)
+	players_text.custom_minimum_size = Vector2(720, 360)
 	players_box.add_child(players_text)
-
-	var chat_panel := _make_panel()
-	chat_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	chat_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_child(chat_panel)
-
-	var chat_box := VBoxContainer.new()
-	chat_box.add_theme_constant_override("separation", 8)
-	chat_panel.add_child(chat_box)
-
-	var chat_title := Label.new()
-	chat_title.text = "Server Events And Chat"
-	chat_title.add_theme_font_size_override("font_size", 18)
-	chat_box.add_child(chat_title)
-
-	chat_text = TextEdit.new()
-	chat_text.editable = false
-	chat_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	chat_text.custom_minimum_size = Vector2(560, 320)
-	chat_box.add_child(chat_text)
 
 
 func _make_panel() -> PanelContainer:
@@ -145,14 +125,12 @@ func _make_panel() -> PanelContainer:
 func _connect_game_server_signals() -> void:
 	GameServer.status_changed.connect(_on_status_changed)
 	GameServer.players_changed.connect(_on_players_changed)
-	GameServer.chat_changed.connect(_on_chat_changed)
 	GameServer.server_error.connect(_on_server_error)
 
 
 func _refresh_all() -> void:
 	_on_status_changed(GameServer.get_status_text())
 	_on_players_changed(GameServer.players)
-	_on_chat_changed(GameServer.chat_history)
 
 
 func _on_start_pressed() -> void:
@@ -161,6 +139,7 @@ func _on_start_pressed() -> void:
 
 
 func _on_stop_pressed() -> void:
+	error_label.text = ""
 	GameServer.stop_server()
 
 
@@ -168,6 +147,7 @@ func _on_status_changed(status_text: String) -> void:
 	status_label.text = "Status: %s" % status_text
 	ip_label.text = "Players join using this IP: %s:%d" % [GameServer.get_lan_ip_text(), GameServer.DEFAULT_PORT]
 	summary_label.text = GameServer.get_connection_summary()
+	_refresh_buttons()
 
 
 func _on_players_changed(_players: Dictionary) -> void:
@@ -175,11 +155,13 @@ func _on_players_changed(_players: Dictionary) -> void:
 	summary_label.text = GameServer.get_connection_summary()
 
 
-func _on_chat_changed(_chat_history: Array) -> void:
-	chat_text.text = GameServer.get_chat_text()
-	chat_text.scroll_vertical = chat_text.get_line_count()
-
-
 func _on_server_error(message: String) -> void:
 	error_label.text = message
 	summary_label.text = GameServer.get_connection_summary()
+	_refresh_buttons()
+
+
+func _refresh_buttons() -> void:
+	var server_online := GameServer.is_running
+	start_button.visible = not server_online
+	stop_button.visible = server_online
