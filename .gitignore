@@ -1,6 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-/builds/*.exe
 /builds/*.pck
 /builds/*.zip
