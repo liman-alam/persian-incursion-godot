@@ -17,9 +17,11 @@ const SAVE_DIR: String = "user://saves"
 var is_running: bool = false
 var is_connected: bool = false
 var is_host: bool = false
+var is_host_player: bool = false
 var current_port: int = DEFAULT_PORT
 var local_player_name: String = "Player"
 var peer: ENetMultiplayerPeer = null
+var host_player_id: int = 0
 
 var players: Dictionary = {}
 var game_state: Dictionary = {}
@@ -36,7 +38,7 @@ func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
-func start_server(player_name: String = "Host", port: int = DEFAULT_PORT) -> bool:
+func start_server(player_name: String = "Host", port: int = DEFAULT_PORT, register_local_player: bool = true) -> bool:
 	if is_running:
 		_emit_status()
 		return true
@@ -60,12 +62,19 @@ func start_server(player_name: String = "Host", port: int = DEFAULT_PORT) -> boo
 	is_running = true
 	is_connected = true
 	is_host = true
+	is_host_player = register_local_player
 
 	_reset_game_state()
 	action_log.clear()
 	chat_history.clear()
-	_register_player_local(SERVER_ID, local_player_name, true)
-	_add_log_local("SERVER", "%s started the server on port %d." % [local_player_name, current_port])
+	host_player_id = 0
+	if register_local_player:
+		_register_player_local(SERVER_ID, local_player_name, true)
+		_add_log_local("SERVER", "%s started the server on port %d." % [local_player_name, current_port])
+		_add_system_chat_message_local("%s started the server." % local_player_name)
+	else:
+		_add_log_local("SERVER", "Dedicated server started on port %d." % current_port)
+		_add_system_chat_message_local("Dedicated server online. Waiting for host player.")
 	_broadcast_everything()
 	_emit_status()
 	return true
@@ -82,9 +91,11 @@ func stop_server() -> void:
 	_disconnect_without_signals()
 	players.clear()
 	chat_history.clear()
+	host_player_id = 0
 	is_running = false
 	is_connected = false
 	is_host = false
+	is_host_player = false
 	_emit_all_state()
 
 
@@ -112,6 +123,7 @@ func connect_to_server(ip_address: String, player_name: String = "Player", port:
 	is_running = false
 	is_connected = true
 	is_host = false
+	is_host_player = false
 	_emit_status("CONNECTING - %s:%d" % [cleaned_ip, current_port])
 	return true
 
@@ -120,9 +132,11 @@ func disconnect_from_server() -> void:
 	_disconnect_without_signals()
 	players.clear()
 	chat_history.clear()
+	host_player_id = 0
 	is_running = false
 	is_connected = false
 	is_host = false
+	is_host_player = false
 	_emit_all_state()
 
 
@@ -149,6 +163,7 @@ func start_new_game() -> void:
 	action_log.clear()
 	chat_history.clear()
 	_add_log_local("SERVER", "New game initialized.")
+	_add_system_chat_message_local("New server state initialized.")
 	_broadcast_everything()
 
 
@@ -262,7 +277,7 @@ func load_game(file_name: String = "autosave") -> bool:
 
 func get_status_text() -> String:
 	if is_host and is_running:
-		return "HOST ONLINE - Port %d" % current_port
+		return "SERVER ONLINE - Port %d" % current_port
 	if is_connected:
 		return "CLIENT CONNECTED - Port %d" % current_port
 	return "OFFLINE"
@@ -270,17 +285,49 @@ func get_status_text() -> String:
 
 func get_players_text() -> String:
 	if players.is_empty():
-		return "No players connected yet."
+		return "Waiting for players..."
 
 	var lines: Array[String] = []
 	for player_id in players.keys():
 		var player: Dictionary = players[player_id]
-		lines.append("%s | %s | ID %s" % [
+		lines.append("%s | %s | %s | ID %s" % [
 			str(player.get("name", "Player")),
+			str(player.get("role", "Player")),
 			str(player.get("team", "Observer")),
 			str(player_id)
 		])
 	return "\n".join(lines)
+
+
+func get_connection_summary() -> String:
+	if is_host and is_running:
+		if not is_host_player:
+			if players.is_empty():
+				return "Server executable online. Waiting for host player..."
+			return "Server executable online. %d players connected." % players.size()
+		if players.size() <= 1:
+			return "Embedded host online. Waiting for teammate..."
+		return "Embedded host online. %d players connected." % players.size()
+
+	if is_connected:
+		if is_host_player:
+			if players.size() <= 1:
+				return "Connected as host. Waiting for teammate..."
+			return "Connected as host. %d players connected." % players.size()
+		return "Connected as player."
+
+	return "Not connected."
+
+
+func get_lan_ip_text() -> String:
+	var addresses: PackedStringArray = IP.get_local_addresses()
+	for address in addresses:
+		if address.begins_with("127."):
+			continue
+		if address.contains(":"):
+			continue
+		return address
+	return "127.0.0.1"
 
 
 func get_game_state_summary() -> String:
@@ -326,8 +373,11 @@ func request_join(player_name: String) -> void:
 		return
 
 	var sender_id: int = multiplayer.get_remote_sender_id()
-	_register_player_local(sender_id, player_name, false)
-	_add_log_local("SERVER", "%s joined the server." % _clean_player_name(player_name))
+	var should_be_host: bool = host_player_id == 0
+	_register_player_local(sender_id, player_name, should_be_host)
+	var role_name: String = "host" if should_be_host else "player"
+	_add_log_local("SERVER", "%s joined the server as %s." % [_clean_player_name(player_name), role_name])
+	_add_system_chat_message_local("%s connected as %s." % [_clean_player_name(player_name), role_name])
 	_broadcast_everything()
 
 
@@ -360,6 +410,7 @@ func request_chat_message(message: String) -> void:
 @rpc("authority", "call_local", "reliable")
 func sync_players(new_players: Dictionary) -> void:
 	players = new_players.duplicate(true)
+	_update_local_host_role()
 	players_changed.emit(players)
 
 
@@ -390,10 +441,15 @@ func _on_peer_connected(peer_id: int) -> void:
 func _on_peer_disconnected(peer_id: int) -> void:
 	if multiplayer.is_server():
 		var player_name: String = "Peer %d" % peer_id
+		var was_host: bool = peer_id == host_player_id
 		if players.has(peer_id):
 			player_name = str(players[peer_id].get("name", player_name))
 			players.erase(peer_id)
+		if was_host:
+			host_player_id = 0
+			_promote_next_host_if_possible()
 		_add_log_local("SERVER", "%s disconnected." % player_name)
+		_add_system_chat_message_local("%s disconnected." % player_name)
 		_broadcast_everything()
 
 
@@ -405,6 +461,13 @@ func _on_connected_to_server() -> void:
 
 func _on_connection_failed() -> void:
 	_disconnect_without_signals()
+	players.clear()
+	chat_history.clear()
+	host_player_id = 0
+	is_running = false
+	is_connected = false
+	is_host = false
+	is_host_player = false
 	_emit_error("Connection failed.")
 	_emit_all_state()
 
@@ -412,17 +475,29 @@ func _on_connection_failed() -> void:
 func _on_server_disconnected() -> void:
 	_disconnect_without_signals()
 	players.clear()
+	chat_history.clear()
+	host_player_id = 0
+	is_running = false
+	is_connected = false
+	is_host = false
+	is_host_player = false
 	_emit_error("Disconnected from server.")
 	_emit_all_state()
 
 
 func _register_player_local(player_id: int, player_name: String, host_player: bool) -> void:
+	if host_player:
+		host_player_id = player_id
+
 	players[player_id] = {
 		"id": player_id,
 		"name": _clean_player_name(player_name),
-		"team": "White" if host_player else "Observer",
+		"team": "Observer",
+		"role": "Host" if host_player else "Player",
 		"is_host": host_player
 	}
+	if player_id == multiplayer.get_unique_id():
+		is_host_player = host_player
 	players_changed.emit(players)
 
 
@@ -483,6 +558,21 @@ func _add_chat_message_local(sender_id: int, message: String) -> void:
 	chat_history.append(entry)
 	_add_log_local("CHAT", "%s sent a chat message." % sender_name)
 	_broadcast_everything()
+
+
+func _add_system_chat_message_local(message: String) -> void:
+	var entry: Dictionary = {
+		"index": chat_history.size() + 1,
+		"sender_id": 0,
+		"sender": "Server",
+		"team": "System",
+		"message": message,
+		"day": int(game_state.get("day", 0)),
+		"phase": str(game_state.get("phase", "Prep")),
+		"move": int(game_state.get("move", 0))
+	}
+	chat_history.append(entry)
+	chat_changed.emit(chat_history)
 
 
 func _add_log_local(category: String, message: String) -> void:
@@ -613,6 +703,29 @@ func _clean_chat_message(message: String) -> String:
 	if cleaned.length() > 300:
 		cleaned = cleaned.substr(0, 300)
 	return cleaned
+
+
+func _promote_next_host_if_possible() -> void:
+	if players.is_empty():
+		return
+
+	var next_id: int = int(players.keys()[0])
+	for player_id in players.keys():
+		players[player_id]["is_host"] = false
+		players[player_id]["role"] = "Player"
+
+	players[next_id]["is_host"] = true
+	players[next_id]["role"] = "Host"
+	host_player_id = next_id
+	_add_system_chat_message_local("%s is now the host." % str(players[next_id].get("name", "Player")))
+
+
+func _update_local_host_role() -> void:
+	var local_id: int = multiplayer.get_unique_id()
+	if players.has(local_id):
+		is_host_player = bool(players[local_id].get("is_host", false))
+	else:
+		is_host_player = false
 
 
 func _ensure_save_dir() -> void:
