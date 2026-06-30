@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://5wsddmcbd4ni"]
+
+[ext_resource type="Script" uid="uid://ofvagq1o7o74" path="res://scripts/server_screen.gd" id="1_server_screen"]
+
+[node name="ServerScreen" type="Control" unique_id=1013767113]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_server_screen")
