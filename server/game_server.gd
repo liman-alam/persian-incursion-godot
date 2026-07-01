@@ -320,14 +320,35 @@ func get_connection_summary() -> String:
 
 
 func get_lan_ip_text() -> String:
-	var addresses: PackedStringArray = IP.get_local_addresses()
-	for address in addresses:
-		if address.begins_with("127."):
-			continue
-		if address.contains(":"):
-			continue
-		return address
+	var addresses := get_lan_ip_addresses()
+	if not addresses.is_empty():
+		return addresses[0]
 	return "127.0.0.1"
+
+
+func get_lan_ip_share_text() -> String:
+	var addresses := get_lan_ip_addresses()
+	if addresses.is_empty():
+		return "No local IPv4 found"
+
+	if addresses.size() == 1:
+		return addresses[0]
+
+	var backup_addresses := addresses.duplicate()
+	backup_addresses.remove_at(0)
+	return "%s  |  Also try: %s" % [addresses[0], ", ".join(backup_addresses)]
+
+
+func get_lan_ip_addresses() -> Array[String]:
+	var addresses: Array[String] = []
+	for address in IP.get_local_addresses():
+		if not _is_shareable_ipv4(address):
+			continue
+		if not addresses.has(address):
+			addresses.append(address)
+
+	addresses.sort_custom(_compare_lan_ip_priority)
+	return addresses
 
 
 func get_game_state_summary() -> String:
@@ -703,6 +724,54 @@ func _clean_chat_message(message: String) -> String:
 	if cleaned.length() > 300:
 		cleaned = cleaned.substr(0, 300)
 	return cleaned
+
+
+func _is_shareable_ipv4(address: String) -> bool:
+	if address.contains(":"):
+		return false
+	if address.begins_with("127."):
+		return false
+	if address.begins_with("169.254."):
+		return false
+	if address == "0.0.0.0":
+		return false
+
+	var parts := address.split(".")
+	if parts.size() != 4:
+		return false
+
+	for part in parts:
+		if not part.is_valid_int():
+			return false
+		var value := int(part)
+		if value < 0 or value > 255:
+			return false
+
+	return true
+
+
+func _compare_lan_ip_priority(left: String, right: String) -> bool:
+	return _lan_ip_priority(left) < _lan_ip_priority(right)
+
+
+func _lan_ip_priority(address: String) -> int:
+	if address.begins_with("10."):
+		return 0
+	if address.begins_with("192.168."):
+		return 1
+	if _is_private_172_address(address):
+		return 2
+	return 3
+
+
+func _is_private_172_address(address: String) -> bool:
+	var parts := address.split(".")
+	if parts.size() < 2:
+		return false
+	if not parts[1].is_valid_int():
+		return false
+	var second_part := int(parts[1])
+	return address.begins_with("172.") and second_part >= 16 and second_part <= 31
 
 
 func _promote_next_host_if_possible() -> void:

@@ -21,7 +21,11 @@ GameServer="*res://server/game_server.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/min_width=960
+window/size/min_height=540
+window/stretch/mode="disabled"
 window/stretch/aspect="expand"
 
 [physics]
