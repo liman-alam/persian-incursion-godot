@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://itwbwludafwu"]
+
+[ext_resource type="Texture2D" uid="uid://k6m6r07oj17p" path="res://Art/Background Images/game_background.png" id="1_x5snq"]
+
+[node name="Background" type="TextureRect" unique_id=498098619]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_x5snq")
+stretch_mode = 6

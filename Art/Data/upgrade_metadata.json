@@ -1,0 +1,261 @@
+﻿[
+    {
+        "team":  "Blue",
+        "name":  "Aeriel Tankers",
+        "cost":  15,
+        "stackable":  true,
+        "description":  "(One aircraft per upgrade)More aerial tankers; The Israelis acquire"
+    },
+    {
+        "team":  "Blue",
+        "name":  "AGM-88 HARM Block 5",
+        "cost":  35,
+        "stackable":  false,
+        "description":  "This version of the HARM has the ability to lock on and home in on"
+    },
+    {
+        "team":  "Blue",
+        "name":  "AIM-120D AMRAAM",
+        "cost":  30,
+        "stackable":  false,
+        "description":  "range 60nm"
+    },
+    {
+        "team":  "Blue",
+        "name":  "EGBU-28C",
+        "cost":  40,
+        "stackable":  true,
+        "description":  "This weapon will penetrate the overhead protection of the Natanz centrifuge"
+    },
+    {
+        "team":  "Blue",
+        "name":  "Jam-resistant GPS receivers T1",
+        "cost":  35,
+        "stackable":  false,
+        "description":  "US-built ordance only"
+    },
+    {
+        "team":  "Blue",
+        "name":  "Jam-resistant GPS receivers T2",
+        "cost":  50,
+        "stackable":  false,
+        "description":  "US-built and Israeli-built ordance"
+    },
+    {
+        "team":  "Blue",
+        "name":  "Minature Air Launched Decoy",
+        "cost":  30,
+        "stackable":  false,
+        "description":  "Carried by aircraft on fighter suppression missions, +2 on the Fighter"
+    },
+    {
+        "team":  "Blue",
+        "name":  "Third Arrow",
+        "cost":  35,
+        "stackable":  false,
+        "description":  "Third Arrow-2 battalion fully operational (being implemented in 2010,"
+    },
+    {
+        "team":  "Blue",
+        "name":  "Iron Dome Expansion",
+        "cost":  40,
+        "stackable":  false,
+        "description":  "Iron Dome expanded, reduces effectiveness of terror attacks by 20%"
+    },
+    {
+        "team":  "Red",
+        "name":  "Air Defense Network",
+        "cost":  50,
+        "stackable":  false,
+        "description":  "Improved air defense network(-2 on Israeli Suter Attack Table)"
+    },
+    {
+        "team":  "Red",
+        "name":  "Air Defense Warning Radars",
+        "cost":  40,
+        "stackable":  false,
+        "description":  "Improved early warning radars (+2 on the GCI Fighter Table)"
+    },
+    {
+        "team":  "Red",
+        "name":  "Buk-M1 Battery",
+        "cost":  25,
+        "stackable":  true,
+        "description":  "\u0027(One battery per upgrade)SAM systems(requires the selling country"
+    },
+    {
+        "team":  "Red",
+        "name":  "EM-55 Deepwater Mines",
+        "cost":  35,
+        "stackable":  false,
+        "description":  "EM-55 Guided propelled deepwater mines. Allow mining of the Strait"
+    },
+    {
+        "team":  "Red",
+        "name":  "GPS Jammer Nuclear",
+        "cost":  30,
+        "stackable":  false,
+        "description":  "GPS Jammer for Nuclear Infrastructure( -1 modifier for GPS-guided"
+    },
+    {
+        "team":  "Red",
+        "name":  "GPS Jammer Oil \u0026 Nuclear",
+        "cost":  65,
+        "stackable":  false,
+        "description":  "GPS Jammer for Nuclear Infrastructure( -3 modifier for GPS-guided"
+    },
+    {
+        "team":  "Red",
+        "name":  "HQ-9 Battery",
+        "cost":  35,
+        "stackable":  true,
+        "description":  "\u0027(One battery per upgrade)SAM systems(requires the selling country"
+    },
+    {
+        "team":  "Red",
+        "name":  "Military Decoy",
+        "cost":  45,
+        "stackable":  false,
+        "description":  "Bodyguard Laser Decoys/Dazzlers For Military Targets"
+    },
+    {
+        "team":  "Red",
+        "name":  "Nuclear Decoy",
+        "cost":  10,
+        "stackable":  false,
+        "description":  "Bodyguard Laser Decoys/Dazzlers For Nuclear infrastructure(4 for laser-guided"
+    },
+    {
+        "team":  "Red",
+        "name":  "Oil Decoy",
+        "cost":  25,
+        "stackable":  false,
+        "description":  "Bodyguard Laser Decoys/Dazzlers For Oil Infrastructure"
+    },
+    {
+        "team":  "Red",
+        "name":  "\u0027Pantsyr-S1E \u0027",
+        "cost":  15,
+        "stackable":  true,
+        "description":  "(One battery per upgrade)mobile gun/SAM system(Short-Range SAM) :Iran"
+    },
+    {
+        "team":  "Red",
+        "name":  "PL-5E PL-8 AAMS",
+        "cost":  25,
+        "stackable":  false,
+        "description":  "PL-5E and PL-8 AAMs to replace AIM-9/Fatter from PRC (requires the"
+    },
+    {
+        "team":  "Red",
+        "name":  "R-27ER1 AAM",
+        "cost":  25,
+        "stackable":  false,
+        "description":  "R-27ER1 AAM upgrade for Iranian MiG-29 from Russia (requires Russia"
+    },
+    {
+        "team":  "Red",
+        "name":  "S-300PMU-1",
+        "cost":  40,
+        "stackable":  true,
+        "description":  "\u0027(One battery per upgrade)SAM systems(requires the selling country"
+    },
+    {
+        "team":  "Red",
+        "name":  "SAM Battery Decoy",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "(One battery per upgrade)High-fidelity decoys of an entire SAM battery."
+    },
+    {
+        "team":  "Red",
+        "name":  "Sejil-2 Ballistic Missle Battalion",
+        "cost":  25,
+        "stackable":  true,
+        "description":  "(Max of 2 and can be launched the same turn as they are ordered)"
+    },
+    {
+        "team":  "Red",
+        "name":  "Tor-M1 Battery",
+        "cost":  20,
+        "stackable":  true,
+        "description":  "\u0027(One battery per upgrade)SAM systems(requires the selling country"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "HQ-9 Battery",
+        "cost":  8,
+        "stackable":  true,
+        "description":  "\u0027Requires Ally Status With China: (One batter per upgrade)  Fixed"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "J-10 Squadron",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Ally Status With China: 12 Aircraft\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "J-11 Flanker Squadron",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Ally Status With China: 12 Aircraft\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "KJ-2000 Mainring AEW Detachment",
+        "cost":  15,
+        "stackable":  false,
+        "description":  "\u0027Requires Ally Status With China: + 1 to Iranian GCI fighter rolls,"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "A-50 Mainstay detachment",
+        "cost":  15,
+        "stackable":  false,
+        "description":  "\u0027Requires Russian Allyship: + 1 to Iranian GCI fighter rolls, +2 to"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "Buk-M1 [SA-11] battery",
+        "cost":  8,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: (One battery per upgrade) Medium-Range"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "MiG-29SMT Fulcrum Squadron",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: 12 Aircraft\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "MiG-31 Foxhound Squadron",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: 12 Aircraft\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "S-300PMU-1 [SA-20] battery",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: (One battery per upgrade) Long-Range SAM\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "Su-27SM-1 Flanker Squadron",
+        "cost":  10,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: 12 Aircraft\u0027"
+    },
+    {
+        "team":  "RedExtra",
+        "name":  "Tor-M1 Battery",
+        "cost":  6,
+        "stackable":  true,
+        "description":  "\u0027Requires Russian Allyship: (One battery per upgrade) Short-Range"
+    }
+]

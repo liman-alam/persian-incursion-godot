@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b3lpdx3v1qur"]
+
+[ext_resource type="Script" uid="uid://dm1pi85vyhyu2" path="res://autoload/app_launcher.gd" id="1_jdf1j"]
+
+[node name="AppLauncher" type="Node" unique_id=2079854128]
+script = ExtResource("1_jdf1j")

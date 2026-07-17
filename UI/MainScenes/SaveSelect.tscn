@@ -1,0 +1,237 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://UI/MainScenes/save_select.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Art/Background Images/game_background.png" id="2_bg"]
+[ext_resource type="FontFile" path="res://Art/Fonts/Rajdhani/Rajdhani-SemiBold.ttf" id="3_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 34.0
+content_margin_top = 28.0
+content_margin_right = 34.0
+content_margin_bottom = 28.0
+bg_color = Color(0.039215688, 0.10980392, 0.05882353, 0.76)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03529412, 0.29803923, 0.101960786, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.019607844, 0.20784314, 0.07450981, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.43137255, 0.14117648, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.76862746, 0.23137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_focus"]
+
+[node name="SaveSelect" type="Control" node_paths=PackedStringArray("title_label", "prompt_label", "status_label", "panel_vbox", "back_button", "continue_button", "refresh_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+title_label = NodePath("CanvasLayer/VBoxContainer/CenterContainer/TitleLabel")
+prompt_label = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/PromptLabel")
+status_label = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/StatusLabel")
+panel_vbox = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox")
+back_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow/BackButton")
+continue_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow/ContinueButton")
+refresh_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow/RefreshButton")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+stretch_mode = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="TopSpacer" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.57254905, 0.48235294, 0.29411766, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.81757504, 0.17464367, 0.18727228, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 96
+text = "Load Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.12
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(820, 465)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="PanelMargin" type="MarginContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="PanelVBox" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PromptLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.75)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 38
+text = "Saved Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow"]
+custom_minimum_size = Vector2(160, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Back"
+
+[node name="RefreshButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow"]
+custom_minimum_size = Vector2(190, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Refresh"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/Panel/PanelMargin/PanelVBox/ButtonRow"]
+custom_minimum_size = Vector2(210, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Continue"
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

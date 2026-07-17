@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bs34fjsjxhsg7"]
+
+[ext_resource type="Script" uid="uid://civdoe4nk7ast" path="res://Scripts/dedicated_server_app.gd" id="1_dedicated_server_app"]
+
+[node name="DedicatedServerApp" type="Control" unique_id=1689821777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dedicated_server_app")

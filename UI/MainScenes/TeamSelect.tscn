@@ -1,0 +1,399 @@
+[gd_scene format=3 uid="uid://dp5wc2gt47ikp"]
+
+[ext_resource type="Script" uid="uid://br4yg4p1au6v6" path="res://UI/MainScenes/team_select.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://k6m6r07oj17p" path="res://Art/Background Images/game_background.png" id="2_bg"]
+[ext_resource type="FontFile" uid="uid://cq6nhvbp12nqb" path="res://Art/Fonts/Rajdhani/Rajdhani-SemiBold.ttf" id="3_font"]
+[ext_resource type="Script" uid="uid://dnyebl6g8ohbw" path="res://UI/MainScenes/team_taken_cross.gd" id="4_cross"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03529412, 0.29803923, 0.101960786, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.019607844, 0.20784314, 0.07450981, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.43137255, 0.14117648, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.76862746, 0.23137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_focus"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 34.0
+content_margin_top = 28.0
+content_margin_right = 34.0
+content_margin_bottom = 26.0
+bg_color = Color(0.039215688, 0.10980392, 0.05882353, 0.76)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_confirm_panel"]
+content_margin_left = 34.0
+content_margin_top = 28.0
+content_margin_right = 34.0
+content_margin_bottom = 26.0
+bg_color = Color(0.02745098, 0.09411765, 0.047058824, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 0.98)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.58)
+shadow_size = 14
+
+[node name="TeamSelect" type="Control" unique_id=1616726264 node_paths=PackedStringArray("status_label", "white_button", "blue_button", "red_button", "back_button", "confirmation_overlay", "confirmation_message", "confirm_button", "cancel_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+status_label = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/StatusLabel")
+white_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/WhiteButton")
+blue_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/BlueButton")
+red_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/RedButton")
+back_button = NodePath("CanvasLayer/VBoxContainer/TopSpacer/BackButton")
+confirmation_overlay = NodePath("CanvasLayer/ConfirmOverlay")
+confirmation_message = NodePath("CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox/MessageLabel")
+confirm_button = NodePath("CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox/ButtonRow/ConfirmButton")
+cancel_button = NodePath("CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox/ButtonRow/CancelButton")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1397592050]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+stretch_mode = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1960481644]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1009129961]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="TopSpacer" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=1473360118]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.95
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer/TopSpacer" unique_id=370000106]
+custom_minimum_size = Vector2(150, 56)
+layout_mode = 1
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 184.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Back"
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer" unique_id=1671079259]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer" unique_id=634750765]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.57254905, 0.48235294, 0.29411766, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.81757504, 0.17464367, 0.18727228, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 96
+text = "Select a Team"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=1828209984]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.16
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/VBoxContainer" unique_id=31792726]
+layout_mode = 2
+
+[node name="TeamPanel" type="PanelContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2" unique_id=1836596006]
+custom_minimum_size = Vector2(650, 185)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="PanelMargin" type="MarginContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel" unique_id=2134381947]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="PanelVBox" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin" unique_id=1509518526]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox" unique_id=507305948]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="WhiteButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=2089095752]
+custom_minimum_size = Vector2(150, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "White"
+
+[node name="TakenCross" type="Control" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/WhiteButton" unique_id=1457265083]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_cross")
+
+[node name="BlueButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=879872225]
+custom_minimum_size = Vector2(150, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Blue"
+
+[node name="TakenCross" type="Control" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/BlueButton" unique_id=111916125]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_cross")
+
+[node name="RedButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=2054591560]
+custom_minimum_size = Vector2(150, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Red"
+
+[node name="TakenCross" type="Control" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox/ButtonRow/RedButton" unique_id=2119190588]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_cross")
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer2/TeamPanel/PanelMargin/PanelVBox" unique_id=1608957575]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=1985450591]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConfirmOverlay" type="Control" parent="CanvasLayer" unique_id=1043759152]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CanvasLayer/ConfirmOverlay" unique_id=1229410371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ConfirmOverlay" unique_id=1643019880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmPanel" type="PanelContainer" parent="CanvasLayer/ConfirmOverlay/CenterContainer" unique_id=1421873963]
+custom_minimum_size = Vector2(590, 245)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_confirm_panel")
+
+[node name="PanelMargin" type="MarginContainer" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel" unique_id=1929135098]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="PanelVBox" type="VBoxContainer" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin" unique_id=863777109]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox" unique_id=343924565]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 42
+text = "Choose Team?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox" unique_id=133889729]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = "Are you sure you want to choose this team?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox" unique_id=203230771]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=583296737]
+custom_minimum_size = Vector2(175, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/ConfirmOverlay/CenterContainer/ConfirmPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=795318173]
+custom_minimum_size = Vector2(235, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Choose"

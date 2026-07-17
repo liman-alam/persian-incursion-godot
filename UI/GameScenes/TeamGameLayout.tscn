@@ -1,0 +1,762 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://UI/MainScenes/background.tscn" id="1_background"]
+[ext_resource type="Texture2D" path="res://Art/Icons/IntelligencePointsIcon.png" id="2_ip"]
+[ext_resource type="Texture2D" path="res://Art/Icons/MilitaryPointsIcon.png" id="3_mp"]
+[ext_resource type="Texture2D" path="res://Art/Icons/PoliticalPointsIcon.png" id="4_pp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 14.0
+content_margin_top = 12.0
+content_margin_right = 14.0
+content_margin_bottom = 12.0
+bg_color = Color(0.027, 0.094, 0.055, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.914, 0.612, 0.122, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.027, 0.094, 0.055, 0.62)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.914, 0.612, 0.122, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clear"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_friend_overlay"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.035, 0.035, 0.025, 0.55)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_friend_chat"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.02, 0.025, 0.018, 0.54)
+
+[node name="TeamGameLayout" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("1_background")]
+layout_mode = 1
+
+[node name="Dashboard" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Wash" type="ColorRect" parent="Dashboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TitlePanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 268.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_clear")
+
+[node name="TitleLabel" type="Button" parent="Dashboard/TitlePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 46
+text = "Main Menu"
+tooltip_text = "Open campaign controls"
+autowrap_mode = 2
+
+[node name="TimerPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 30.0
+offset_right = 300.0
+offset_bottom = 280.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_friend_overlay")
+
+[node name="TimerBox" type="VBoxContainer" parent="Dashboard/TimerPanel"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="AdminRow" type="HBoxContainer" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="PrevTurnButton" type="Button" parent="Dashboard/TimerPanel/TimerBox/AdminRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Prev Turn"
+
+[node name="PrevDayButton" type="Button" parent="Dashboard/TimerPanel/TimerBox/AdminRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Prev Day"
+
+[node name="TeamSelector" type="OptionButton" parent="Dashboard/TimerPanel/TimerBox/AdminRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(115, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+item_count = 3
+popup/item_0/text = "White"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Blue"
+popup/item_2/id = 2
+
+[node name="NextDayButton" type="Button" parent="Dashboard/TimerPanel/TimerBox/AdminRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Next Day"
+
+[node name="NextTurnButton" type="Button" parent="Dashboard/TimerPanel/TimerBox/AdminRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Next Turn"
+
+[node name="TurnLabel" type="Label" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 36
+text = "Day 0 - Prep - Move 0"
+horizontal_alignment = 1
+
+[node name="CurrentMoveLabel" type="Label" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 24
+text = "WHITE TO ACT"
+horizontal_alignment = 1
+
+[node name="CountdownLabel" type="Label" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 48
+text = "05:00"
+horizontal_alignment = 1
+
+[node name="ElapsedLabel" type="Label" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="TimerButton" type="Button" parent="Dashboard/TimerPanel/TimerBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(190, 41)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 23
+text = "Start Timer"
+
+[node name="PointsPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -390.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = 198.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_friend_overlay")
+
+[node name="PointsBox" type="VBoxContainer" parent="Dashboard/PointsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PointTeamLabel" type="Label" parent="Dashboard/PointsPanel/PointsBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.914, 0.612, 0.122, 1)
+theme_override_font_sizes/font_size = 21
+text = "TEAM RESOURCES"
+horizontal_alignment = 1
+
+[node name="PointsRow" type="HBoxContainer" parent="Dashboard/PointsPanel/PointsBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="IPColumn" type="VBoxContainer" parent="Dashboard/PointsPanel/PointsBox/PointsRow"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Dashboard/PointsPanel/PointsBox/PointsRow/IPColumn"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ip")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IPLabel" type="Label" parent="Dashboard/PointsPanel/PointsBox/PointsRow/IPColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="MPColumn" type="VBoxContainer" parent="Dashboard/PointsPanel/PointsBox/PointsRow"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Dashboard/PointsPanel/PointsBox/PointsRow/MPColumn"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_mp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MPLabel" type="Label" parent="Dashboard/PointsPanel/PointsBox/PointsRow/MPColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="PPColumn" type="VBoxContainer" parent="Dashboard/PointsPanel/PointsBox/PointsRow"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Dashboard/PointsPanel/PointsBox/PointsRow/PPColumn"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_pp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PPLabel" type="Label" parent="Dashboard/PointsPanel/PointsBox/PointsRow/PPColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="PendingPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.39
+anchor_top = 0.315
+anchor_right = 0.735
+anchor_bottom = 0.41
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="PendingRow" type="HBoxContainer" parent="Dashboard/PendingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PendingLabel" type="Label" parent="Dashboard/PendingPanel/PendingRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+
+[node name="ApproveButton" type="Button" parent="Dashboard/PendingPanel/PendingRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Approve"
+
+[node name="ReturnButton" type="Button" parent="Dashboard/PendingPanel/PendingRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Return"
+
+[node name="ResolveButton" type="Button" parent="Dashboard/PendingPanel/PendingRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(135, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Resolve"
+
+[node name="TurnControlsPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.39
+anchor_top = 0.425
+anchor_right = 0.735
+anchor_bottom = 0.655
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TurnControlsBox" type="VBoxContainer" parent="Dashboard/TurnControlsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TurnControlHeading" type="Label" parent="Dashboard/TurnControlsPanel/TurnControlsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.914, 0.612, 0.122, 1)
+theme_override_font_sizes/font_size = 21
+text = "TURN CONTROL"
+horizontal_alignment = 1
+
+[node name="TurnInstructionLabel" type="Label" parent="Dashboard/TurnControlsPanel/TurnControlsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 22
+text = "Waiting for campaign state..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TurnButtonRow" type="HBoxContainer" parent="Dashboard/TurnControlsPanel/TurnControlsBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BeginCampaignButton" type="Button" parent="Dashboard/TurnControlsPanel/TurnControlsBox/TurnButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Begin Campaign"
+
+[node name="OpenTeamTrackButton" type="Button" parent="Dashboard/TurnControlsPanel/TurnControlsBox/TurnButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Open Team Track"
+
+[node name="PlanActionButton" type="Button" parent="Dashboard/TurnControlsPanel/TurnControlsBox/TurnButtonRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(145, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Plan Action"
+
+[node name="SubmitActionButton" type="Button" parent="Dashboard/TurnControlsPanel/TurnControlsBox/TurnButtonRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(155, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Submit Action"
+
+[node name="PassMoveButton" type="Button" parent="Dashboard/TurnControlsPanel/TurnControlsBox/TurnButtonRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(115, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pass"
+
+[node name="ChatPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 30.0
+anchor_top = 1.0
+offset_top = -444.0
+offset_right = 725.0
+anchor_bottom = 1.0
+offset_bottom = -30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_clear")
+
+[node name="ChatBox" type="VBoxContainer" parent="Dashboard/ChatPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChannelRow" type="HBoxContainer" parent="Dashboard/ChatPanel/ChatBox"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ChatChannelLabel" type="Label" parent="Dashboard/ChatPanel/ChatBox/ChannelRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 22
+text = "CHAT"
+
+[node name="PublicChatButton" type="Button" parent="Dashboard/ChatPanel/ChatBox/ChannelRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(198, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Global"
+
+[node name="RedChatButton" type="Button" parent="Dashboard/ChatPanel/ChatBox/ChannelRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(198, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Red"
+
+[node name="BlueChatButton" type="Button" parent="Dashboard/ChatPanel/ChatBox/ChannelRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(198, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Blue"
+
+[node name="ChatHistory" type="RichTextLabel" parent="Dashboard/ChatPanel/ChatBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/normal_font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_friend_chat")
+scroll_following = true
+
+[node name="InputRow" type="HBoxContainer" parent="Dashboard/ChatPanel/ChatBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ChatInput" type="LineEdit" parent="Dashboard/ChatPanel/ChatBox/InputRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+placeholder_text = "Enter message here..."
+max_length = 280
+
+[node name="SendChatButton" type="Button" parent="Dashboard/ChatPanel/ChatBox/InputRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Send"
+
+[node name="DicePanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.465
+anchor_top = 0.665
+anchor_right = 0.69
+anchor_bottom = 0.947
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="DiceBox" type="VBoxContainer" parent="Dashboard/DicePanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="DiceResultLabel" type="Label" parent="Dashboard/DicePanel/DiceBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 25
+text = "Roll dice"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DiceGrid" type="GridContainer" parent="Dashboard/DicePanel/DiceBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="D6Button" type="Button" parent="Dashboard/DicePanel/DiceBox/DiceGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "D6"
+
+[node name="TwoD6Button" type="Button" parent="Dashboard/DicePanel/DiceBox/DiceGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "2 D6"
+
+[node name="D10Button" type="Button" parent="Dashboard/DicePanel/DiceBox/DiceGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "D10"
+
+[node name="D100Button" type="Button" parent="Dashboard/DicePanel/DiceBox/DiceGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "D100"
+
+[node name="MenuPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 210.0
+offset_right = -30.0
+anchor_bottom = 1.0
+offset_bottom = -30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_clear")
+
+[node name="MenuScroll" type="ScrollContainer" parent="Dashboard/MenuPanel"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MenuBox" type="VBoxContainer" parent="Dashboard/MenuPanel/MenuScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="MenuHeading" type="Label" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.914, 0.612, 0.122, 1)
+theme_override_font_sizes/font_size = 25
+text = "TEAM COMMAND"
+horizontal_alignment = 1
+
+[node name="MenuSeparator" type="HSeparator" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MenuButton01" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 1"
+
+[node name="MenuButton02" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 2"
+
+[node name="MenuButton03" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 3"
+
+[node name="MenuButton04" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 4"
+
+[node name="MenuButton05" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 5"
+
+[node name="MenuButton06" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 6"
+
+[node name="MenuButton07" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 7"
+
+[node name="MenuButton08" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 8"
+
+[node name="MenuButton09" type="Button" parent="Dashboard/MenuPanel/MenuScroll/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Menu 9"
+
+[node name="StatusPanel" type="PanelContainer" parent="Dashboard"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.39
+anchor_top = 0.955
+anchor_right = 0.735
+anchor_bottom = 0.997
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="StatusLabel" type="Label" parent="Dashboard/StatusPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 18
+text = "Ready"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverOverlay" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 500
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Shade" type="ColorRect" parent="GameOverOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="Center" type="CenterContainer" parent="GameOverOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverPanel" type="PanelContainer" parent="GameOverOverlay/Center"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(760, 360)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="GameOverBox" type="VBoxContainer" parent="GameOverOverlay/Center/GameOverPanel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="GameOverTitle" type="Label" parent="GameOverOverlay/Center/GameOverPanel/GameOverBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.914, 0.612, 0.122, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 50
+text = "CAMPAIGN OVER"
+horizontal_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="GameOverOverlay/Center/GameOverPanel/GameOverBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.957, 0.941, 0.875, 1)
+theme_override_font_sizes/font_size = 29
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ReviewCampaignButton" type="Button" parent="GameOverOverlay/Center/GameOverPanel/GameOverBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Review Campaign"

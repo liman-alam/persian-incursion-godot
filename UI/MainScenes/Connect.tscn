@@ -1,0 +1,265 @@
+[gd_scene format=3 uid="uid://bndeov3j3vr82"]
+
+[ext_resource type="Script" uid="uid://cyyaycg5w35uj" path="res://UI/MainScenes/client.gd" id="1_client"]
+[ext_resource type="Texture2D" uid="uid://k6m6r07oj17p" path="res://Art/Background Images/game_background.png" id="2_bg"]
+[ext_resource type="FontFile" uid="uid://cq6nhvbp12nqb" path="res://Art/Fonts/Rajdhani/Rajdhani-SemiBold.ttf" id="3_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 34.0
+content_margin_top = 28.0
+content_margin_right = 34.0
+content_margin_bottom = 28.0
+bg_color = Color(0.039215688, 0.10980392, 0.05882353, 0.72)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_input"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.015686275, 0.06666667, 0.03529412, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6901961, 0.43137255, 0.09411765, 0.95)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03529412, 0.29803923, 0.101960786, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.019607844, 0.20784314, 0.07450981, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+content_margin_left = 34.0
+content_margin_top = 10.0
+content_margin_right = 34.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.43137255, 0.14117648, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.76862746, 0.23137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_focus"]
+
+[node name="JoinGame" type="Control" unique_id=1330555796 node_paths=PackedStringArray("ip_input", "status_label", "connect_button", "back_button", "localhost_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_client")
+ip_input = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/IpInput")
+status_label = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/StatusLabel")
+connect_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/ButtonRow/ConnectButton")
+back_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/ButtonRow/BackButton")
+localhost_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/LocalhostButton")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1416200588]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+stretch_mode = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=172759541]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=887553765]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="TopSpacer" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=1587339399]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.95
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer" unique_id=573276435]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer" unique_id=1483275066]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.57254905, 0.48235294, 0.29411766, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.81757504, 0.17464367, 0.18727228, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 96
+text = "Join Server"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=1419883869]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.16
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/VBoxContainer" unique_id=522669533]
+layout_mode = 2
+
+[node name="JoinPanel" type="PanelContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2" unique_id=20194795]
+custom_minimum_size = Vector2(560, 345)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="PanelMargin" type="MarginContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel" unique_id=604389867]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="PanelVBox" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin" unique_id=504183647]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PromptLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox" unique_id=807704111]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.75)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 38
+text = "Dedicated Server IP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IpInput" type="LineEdit" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox" unique_id=968251919]
+custom_minimum_size = Vector2(440, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_placeholder_color = Color(0.972549, 0.95686275, 0.7921569, 0.45)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_input")
+theme_override_styles/focus = SubResource("StyleBox_input")
+placeholder_text = "Enter server IP"
+alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox" unique_id=240540897]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=975453911]
+custom_minimum_size = Vector2(175, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Back"
+
+[node name="ConnectButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox/ButtonRow" unique_id=2126571795]
+custom_minimum_size = Vector2(210, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Connect"
+
+[node name="LocalhostButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox" unique_id=347658642]
+custom_minimum_size = Vector2(407, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Connect to a server running on this computer"
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "127.0.0.1"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer2/JoinPanel/PanelMargin/PanelVBox" unique_id=465247555]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=649590745]
+layout_mode = 2
+size_flags_vertical = 3

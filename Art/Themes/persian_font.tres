@@ -1,0 +1,67 @@
+[gd_resource type="Theme" format=3 uid="uid://dtep0vb4lha5s"]
+
+[ext_resource type="FontFile" uid="uid://cq6nhvbp12nqb" path="res://Art/Fonts/Rajdhani/Rajdhani-SemiBold.ttf" id="2_4oagy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu1l2"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.43137255, 0.14117648, 0.98039216)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.76862746, 0.23137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm30l"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03529412, 0.29803923, 0.101960786, 0.92156863)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2664u"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.019607844, 0.20784314, 0.07450981, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[resource]
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("2_4oagy")
+Button/styles/hover = SubResource("StyleBoxFlat_uu1l2")
+Button/styles/normal = SubResource("StyleBoxFlat_mm30l")
+Button/styles/pressed = SubResource("StyleBoxFlat_2664u")
+HeaderLarge/font_sizes/font_size = 48
+HeaderLarge/fonts/font = ExtResource("2_4oagy")
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("2_4oagy")
+LineEdit/fonts/font = ExtResource("2_4oagy")
+OptionButton/fonts/font = ExtResource("2_4oagy")
+TextEdit/fonts/font = ExtResource("2_4oagy")

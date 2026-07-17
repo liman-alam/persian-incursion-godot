@@ -1,0 +1,179 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://UI/MainScenes/mode_select.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Art/Background Images/game_background.png" id="1_bg"]
+[ext_resource type="FontFile" path="res://Art/Fonts/Rajdhani/Rajdhani-SemiBold.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+content_margin_left = 40.0
+content_margin_top = 10.0
+content_margin_right = 40.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03529412, 0.29803923, 0.101960786, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91764706, 0.6117647, 0.12156863, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+content_margin_left = 40.0
+content_margin_top = 10.0
+content_margin_right = 40.0
+content_margin_bottom = 10.0
+bg_color = Color(0.019607844, 0.20784314, 0.07450981, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7411765, 0.4392157, 0.06666667, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+content_margin_left = 40.0
+content_margin_top = 10.0
+content_margin_right = 40.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.43137255, 0.14117648, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.76862746, 0.23137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="ModeSelect" type="Control" unique_id=69836917 node_paths=PackedStringArray("new_game_button", "load_game_button", "back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+new_game_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/ButtonRow/NewGameButton")
+load_game_button = NodePath("CanvasLayer/VBoxContainer/CenterContainer2/ButtonRow/LoadGameButton")
+back_button = NodePath("CanvasLayer/VBoxContainer/TopSpacer/BackButton")
+
+[node name="Background" type="TextureRect" parent="." unique_id=699925194]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_bg")
+stretch_mode = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=345597510]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="TopSpacer" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.95
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer/TopSpacer"]
+custom_minimum_size = Vector2(150, 56)
+layout_mode = 1
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 184.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Back"
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.57254905, 0.48235294, 0.29411766, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.81757504, 0.17464367, 0.18727228, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 96
+text = "Game Setup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.16
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/ButtonRow" unique_id=237471860]
+custom_minimum_size = Vector2(270, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="CanvasLayer/VBoxContainer/CenterContainer2/ButtonRow"]
+custom_minimum_size = Vector2(270, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.95686275, 0.7921569, 1)
+theme_override_colors/font_pressed_color = Color(0.8666667, 0.8117647, 0.5686275, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Load Game"
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
